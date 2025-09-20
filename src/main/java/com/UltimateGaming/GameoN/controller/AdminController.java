@@ -120,7 +120,7 @@ public class AdminController {
         transactionService.deleteAllTransactions();
     }
 
-    // ✅ new: delete one transaction by id
+    // ✅ Delete one transaction by id
     @DeleteMapping("/transactions/{id}")
     public ResponseEntity<String> deleteTransactionById(@PathVariable String id) {
         transactionService.deleteTransactionById(id);
