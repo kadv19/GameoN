@@ -1,15 +1,9 @@
-package com.UltimateGaming.GameoN.model;
+package com.UltimateGaming.GameoN.dto;
 
-import org.springframework.data.annotation.Id;
-import org.springframework.data.mongodb.core.mapping.Document;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
 
-@Document(collection = "games")
-public class Game {
-
-    @Id
-    private String id;
+public class GameDto {
 
     @NotBlank(message = "Name cannot be blank")
     private String name;
@@ -21,18 +15,15 @@ public class Game {
     private double price;
 
     // Constructors
-    public Game() {}
+    public GameDto() {}
 
-    public Game(String name, String description, double price) {
+    public GameDto(String name, String description, double price) {
         this.name = name;
         this.description = description;
         this.price = price;
     }
 
     // Getters and setters
-    public String getId() { return id; }
-    public void setId(String id) { this.id = id; }
-
     public String getName() { return name; }
     public void setName(String name) { this.name = name; }
 
