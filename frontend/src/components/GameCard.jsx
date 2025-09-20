@@ -8,15 +8,21 @@ const GameCard = ({ game, onPlay, showPlayButton = true }) => {
   const { user } = useAuth();
 
   const handlePlay = async () => {
-    if (!user || !user.id) {
+    if (!user || !user.username) {
       alert('Please login to play games');
       return;
     }
 
     setIsPlaying(true);
     try {
+      // First get the member ID from the backend
+      const memberResponse = await membersAPI.searchByUsername(user.username);
+      if (!memberResponse.data) {
+        throw new Error('Member not found');
+      }
+      
       await transactionsAPI.create({
-        memberId: user.id,
+        memberId: memberResponse.data.id,
         gameId: game.id,
         amount: game.price
       });

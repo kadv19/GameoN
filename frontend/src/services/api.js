@@ -2,11 +2,19 @@ import axios from 'axios';
 
 const API_BASE_URL = 'http://localhost:8080';
 
+// Add CORS headers for all requests
+const corsHeaders = {
+  'Access-Control-Allow-Origin': '*',
+  'Access-Control-Allow-Methods': 'GET, POST, PUT, DELETE, OPTIONS',
+  'Access-Control-Allow-Headers': 'Content-Type, Authorization, X-ADMIN-TOKEN, MEMBER-TOKEN',
+};
+
 // Create axios instance
 const api = axios.create({
   baseURL: API_BASE_URL,
   headers: {
     'Content-Type': 'application/json',
+    ...corsHeaders,
   },
 });
 
@@ -53,6 +61,7 @@ export const membersAPI = {
   getById: (id) => api.get(`/members/${id}`),
   searchByPhone: (phone) => api.get(`/members/search/phone/${phone}`),
   searchByName: (name) => api.get(`/members/search/name/${name}`),
+  searchByUsername: (username) => api.get(`/members/search/username/${username}`),
   update: (id, data) => api.put(`/members/${id}`, data),
   delete: (id) => api.delete(`/members/${id}`),
 };

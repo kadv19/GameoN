@@ -37,11 +37,10 @@ const Login = () => {
         response = await authAPI.login(formData);
       }
 
-      // For now, we'll use the password as token (as per backend implementation)
       const userData = {
         username: formData.username,
         role: loginType,
-        id: 'temp-id' // This should come from backend
+        id: formData.username // Use username as ID for now
       };
 
       login(userData, formData.password);
@@ -49,7 +48,7 @@ const Login = () => {
     } catch (error) {
       console.error('Login error:', error);
       setError(
-        error.response?.data || 
+        error.response?.data?.message || error.response?.data || 
         'Login failed. Please check your credentials.'
       );
     } finally {

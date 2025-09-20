@@ -57,4 +57,12 @@ public class MemberController {
                 .map(ResponseEntity::ok)
                 .orElse(ResponseEntity.notFound().build());
     }
+
+    // 🔍 Search member by username
+    @GetMapping("/search/username/{username}")
+    public ResponseEntity<Member> searchMemberByUsername(@PathVariable String username) {
+        return memberRepository.findByUsername(username)
+                .map(ResponseEntity::ok)
+                .orElse(ResponseEntity.notFound().build());
+    }
 }

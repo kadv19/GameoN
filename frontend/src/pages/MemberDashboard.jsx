@@ -21,7 +21,8 @@ const MemberDashboard = () => {
     balance: 245.50,
     totalGamesPlayed: 15,
     totalRecharges: 3,
-    memberSince: '2024-01-15'
+    memberSince: '2024-01-15',
+    id: user?.username || 'temp-id'
   };
 
   useEffect(() => {

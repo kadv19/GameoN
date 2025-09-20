@@ -27,6 +27,8 @@ public class GameService {
         game.setName(gameDto.getName());
         game.setDescription(gameDto.getDescription());
         game.setPrice(gameDto.getPrice());
+        game.setMinPlayers(gameDto.getMinPlayers());
+        game.setMultipleAllowed(gameDto.isMultipleAllowed());
 
         Game savedGame = gameRepository.save(game);
         logger.info("Successfully created and saved a new game with ID: {}", savedGame.getId());

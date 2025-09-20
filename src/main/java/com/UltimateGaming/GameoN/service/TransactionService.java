@@ -30,7 +30,15 @@ public class TransactionService {
     }
 
     public Transaction createTransaction(TransactionDto dto) {
-        ObjectId memberId = new ObjectId(dto.getMemberId());
+        // Handle both ObjectId and username formats
+        ObjectId memberId;
+        try {
+            memberId = new ObjectId(dto.getMemberId());
+        } catch (IllegalArgumentException e) {
+            // If not a valid ObjectId, treat as username and find member
+            throw new RuntimeException("Invalid member ID format: " + dto.getMemberId());
+        }
+        
         ObjectId gameId = new ObjectId(dto.getGameId());
 
         Transaction transaction = new Transaction(memberId, gameId, dto.getAmount());

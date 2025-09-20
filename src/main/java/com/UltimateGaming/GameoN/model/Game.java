@@ -20,6 +20,9 @@ public class Game {
     @NotNull(message = "Price is required")
     private double price;
 
+    private int minPlayers = 1;
+    private boolean multipleAllowed = false;
+
     // Constructors
     public Game() {}
 
@@ -27,6 +30,8 @@ public class Game {
         this.name = name;
         this.description = description;
         this.price = price;
+        this.minPlayers = 1;
+        this.multipleAllowed = false;
     }
 
     // Getters and setters
@@ -41,4 +46,10 @@ public class Game {
 
     public double getPrice() { return price; }
     public void setPrice(double price) { this.price = price; }
+
+    public int getMinPlayers() { return minPlayers; }
+    public void setMinPlayers(int minPlayers) { this.minPlayers = minPlayers; }
+
+    public boolean isMultipleAllowed() { return multipleAllowed; }
+    public void setMultipleAllowed(boolean multipleAllowed) { this.multipleAllowed = multipleAllowed; }
 }

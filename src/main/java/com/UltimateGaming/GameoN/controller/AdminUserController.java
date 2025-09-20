@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.Map;
 import java.util.Optional;
 
 @RestController
@@ -27,11 +28,14 @@ public class AdminUserController {
 
     // ----------------- Login -----------------
     @PostMapping("/login")
-    public ResponseEntity<String> login(@RequestBody AdminUser user) {
+    public ResponseEntity<?> login(@RequestBody AdminUser user) {
         Optional<AdminUser> auth = adminUserService.authenticate(user.getUsername(), user.getPassword());
         if (auth.isPresent()) {
-            // For now, we'll use the password as token just to test
-            return ResponseEntity.ok("Login successful! Use your password as X-ADMIN-TOKEN header.");
+            return ResponseEntity.ok(Map.of(
+                "message", "Login successful!",
+                "token", user.getPassword(),
+                "user", auth.get()
+            ));
         }
         return ResponseEntity.status(401).body("Invalid credentials");
     }

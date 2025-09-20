@@ -7,6 +7,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.Map;
+
 @RestController
 @RequestMapping("/auth")
 public class MemberAuthController {
@@ -35,7 +37,12 @@ public class MemberAuthController {
         boolean valid = memberService.validateLogin(memberDto.getUsername(), memberDto.getPassword());
 
         if (valid) {
-            return ResponseEntity.ok("Login successful! Use your password as MEMBER-TOKEN header.");
+            Member member = memberService.getByUsername(memberDto.getUsername());
+            return ResponseEntity.ok(Map.of(
+                "message", "Login successful!",
+                "token", memberDto.getPassword(),
+                "user", member
+            ));
         } else {
             return ResponseEntity.status(401).body("Invalid username or password");
         }
