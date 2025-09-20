@@ -1,0 +1,32 @@
+@import 'tailwindcss/base';
+@import 'tailwindcss/components';
+@import 'tailwindcss/utilities';
+@import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&display=swap');
+
+@layer base {
+  body {
+    @apply bg-gradient-to-br from-gaming-dark via-gaming-purple to-gaming-dark text-white min-h-screen;
+  }
+}
+
+@layer components {
+  .btn-primary {
+    @apply bg-gradient-to-r from-gaming-accent to-pink-500 hover:from-pink-500 hover:to-gaming-accent text-white font-bold py-3 px-6 rounded-lg transition-all duration-300 transform hover:scale-105 shadow-lg hover:shadow-xl;
+  }
+  
+  .btn-secondary {
+    @apply bg-gradient-to-r from-primary-600 to-blue-600 hover:from-blue-600 hover:to-primary-600 text-white font-semibold py-2 px-4 rounded-lg transition-all duration-300 transform hover:scale-105;
+  }
+  
+  .card {
+    @apply bg-white/10 backdrop-blur-md rounded-xl p-6 shadow-xl border border-white/20 hover:bg-white/15 transition-all duration-300;
+  }
+  
+  .input-field {
+    @apply w-full px-4 py-3 bg-white/10 border border-white/30 rounded-lg text-white placeholder-white/60 focus:outline-none focus:ring-2 focus:ring-gaming-accent focus:border-transparent transition-all duration-300;
+  }
+  
+  .table-row {
+    @apply border-b border-white/20 hover:bg-white/10 transition-colors duration-200;
+  }
+}
